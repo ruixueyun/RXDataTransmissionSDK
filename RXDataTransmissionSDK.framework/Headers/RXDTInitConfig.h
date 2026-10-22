@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * 初始化可选项,配合 initWithAppid:config:complete: 使用。
+ * 初始化可选项,配合 initWithAppid:domain:config:complete: 使用。
  */
 @interface RXDTInitConfig : NSObject
 

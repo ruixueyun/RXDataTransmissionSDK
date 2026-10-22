@@ -26,10 +26,10 @@ typedef void (^RXDTCompletion)(RXDTAttributionResult *result);
  *
  * 最小接入(UIKit + Scene):
  * @code
- * // application:didFinishLaunchingWithOptions:,appid 为后台登记的 app-id
+ * // application:didFinishLaunchingWithOptions:,appid 为后台登记的 app-id,domain 为归因服务域名
  * RXDTInitConfig *config = [[RXDTInitConfig alloc] init];
  * config.urlSchemes = @[@"dtdemo"];
- * [[RXDataTransmissionService sharedSDK] initWithAppid:@"..." config:config complete:^(NSDictionary *response, NSDictionary *error) { ... }];
+ * [[RXDataTransmissionService sharedSDK] initWithAppid:@"..." domain:@"https://..." config:config complete:^(NSDictionary *response, NSDictionary *error) { ... }];
  * // scene:willConnectToSession:options: / scene:openURLContexts:
  * [[RXDataTransmissionService sharedSDK] handleOpenURL:url completion:^(RXDTAttributionResult *result) { ... }];
  * // scene:willConnectToSession:options: / scene:continueUserActivity:
@@ -44,6 +44,8 @@ typedef void (^RXDTCompletion)(RXDTAttributionResult *result);
 
 /// 初始化时传入的 appid,未初始化时为 nil。
 @property (nonatomic, copy, readonly, nullable) NSString *appId;
+/// 初始化时传入并规范化后的归因服务域名,未初始化时为 nil。
+@property (nonatomic, copy, readonly, nullable) NSString *domain;
 /// 初始化时使用的配置,未初始化时为 nil。
 @property (nonatomic, strong, readonly, nullable) RXDTInitConfig *config;
 
@@ -53,19 +55,22 @@ typedef void (^RXDTCompletion)(RXDTAttributionResult *result);
 + (instancetype)sharedSDK;
 
 /**
- * 使用默认配置初始化 SDK,见 initWithAppid:config:complete:
+ * 使用默认配置初始化 SDK,见 initWithAppid:domain:config:complete:
  */
 - (void)initWithAppid:(NSString *)appid
+               domain:(NSString *)domain
              complete:(nullable RXDTRequestComplete)complete;
 
 /**
  * 初始化 SDK
  * @param appid 后台登记的 app-id,所有请求都放在 App-Id 请求头中;
  *              1~64 位,字母或数字开头,其余为字母、数字、点、下划线或连字符
+ * @param domain 归因服务域名,如 https://fingerprint.example.com;省略协议时默认 https
  * @param config 可选配置,传 nil 使用默认值
  * @param complete 初始化结果回调
  */
 - (void)initWithAppid:(NSString *)appid
+               domain:(NSString *)domain
                config:(nullable RXDTInitConfig *)config
              complete:(nullable RXDTRequestComplete)complete;
 
