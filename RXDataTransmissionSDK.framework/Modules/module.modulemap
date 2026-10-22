@@ -1,0 +1,6 @@
+framework module RXDataTransmissionSDK {
+  umbrella header "RXDataTransmissionSDK.h"
+  export *
+
+  module * { export * }
+}
