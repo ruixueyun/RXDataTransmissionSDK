@@ -91,7 +91,7 @@ typedef void (^RXDTCompletion)(RXDTAttributionResult *result);
 /**
  * 获取透传参数:最近一次新命中(深链或首启归因,不含缓存回放)且带参数的结果,
  * 持久化保存直到调用 clearTransmissionParams。
- * @return {"source": 命中通道, "click_id": 点击记录 ID, "params": {H5 业务参数}};没有待消费的参数时返回 nil
+ * @return 服务端 /api/app/match 返回的完整数据(含平铺的 H5 业务参数);没有待消费的参数时返回 nil
  */
 - (nullable NSDictionary *)getTransmissionParams;
 

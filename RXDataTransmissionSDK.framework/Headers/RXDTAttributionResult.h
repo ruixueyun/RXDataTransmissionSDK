@@ -30,7 +30,7 @@ FOUNDATION_EXPORT NSString *RXDTAttributionSourceDisplayName(RXDTAttributionSour
 /**
  * 一次归因的结果,所有回调都在主线程触发。
  *
- * 业务侧通常只关心 matched 与 params;涉及发奖等资金敏感操作时,
+ * 业务侧通常只关心 matched 与 data;涉及发奖等资金敏感操作时,
  * 建议只信任确定性来源(deeplink / clipboard)或 confidence 足够高的结果。
  */
 @interface RXDTAttributionResult : NSObject
@@ -39,8 +39,9 @@ FOUNDATION_EXPORT NSString *RXDTAttributionSourceDisplayName(RXDTAttributionSour
 @property (nonatomic, assign, readonly) BOOL matched;
 /// [0,1]。确定性来源为 1.0,指纹匹配为服务端打分。
 @property (nonatomic, assign, readonly) double confidence;
-/// H5 上报的业务自定义参数(渠道、邀请码、活动 ID…)。未匹配时为空。
-@property (nonatomic, copy, readonly) NSDictionary<NSString *, NSString *> *params;
+/// 服务端 /api/app/match 返回的完整数据:matched / matchType / confidence / clickId / matchedAt
+/// 以及平铺在同一层的 H5 业务参数(渠道、邀请码、活动 ID…)。请求失败时为空。
+@property (nonatomic, copy, readonly) NSDictionary<NSString *, id> *data;
 /// 服务端点击记录 ID。
 @property (nonatomic, copy, readonly, nullable) NSString *clickId;
 /// YES 表示这是之前保存的结果,本次没有发起网络请求。
