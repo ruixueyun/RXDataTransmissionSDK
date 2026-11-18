@@ -82,7 +82,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSArray<NSString *> *universalLinkHosts;
 /// Universal Links 路径前缀。默认 /app/open。
 @property (nonatomic, copy) NSString *universalLinkPath;
-/// 首启是否读取剪贴板 token。iOS 16+ 读取时系统会弹"允许粘贴"提示,关闭后只走指纹兜底。默认 YES。
+/// 是否访问剪贴板(首启读取 token、深链命中后清理 token)。iOS 16+ 读取时系统会弹"允许粘贴"提示,关闭后只走指纹兜底。默认 YES。
 @property (nonatomic, assign) BOOL readClipboard;
 /// 命中后是否清空剪贴板中的 token,避免被重复使用或干扰用户。默认 YES。
 @property (nonatomic, assign) BOOL clearClipboardAfterMatch;
