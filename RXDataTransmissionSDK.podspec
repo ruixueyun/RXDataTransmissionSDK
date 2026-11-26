@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RXDataTransmissionSDK'
-  s.version          = '4.0.4'
+  s.version          = '4.0.5'
   s.summary          = 'RXDataTransmissionSDK framework.'
 
 # This description is used to generate tags and improve searc results.

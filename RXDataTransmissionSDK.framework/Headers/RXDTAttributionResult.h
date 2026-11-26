@@ -39,7 +39,7 @@ FOUNDATION_EXPORT NSString *RXDTAttributionSourceDisplayName(RXDTAttributionSour
 @property (nonatomic, assign, readonly) BOOL matched;
 /// [0,1]。确定性来源为 1.0,指纹匹配为服务端打分。
 @property (nonatomic, assign, readonly) double confidence;
-/// 服务端 /api/app/match 返回的完整数据:matched / matchType / confidence / clickId / matchedAt
+/// 服务端 /v1/siteapi/rxdt/app/match 返回的完整数据:matched / matchType / confidence / clickId / matchedAt
 /// 以及平铺在同一层的 H5 业务参数(渠道、邀请码、活动 ID…)。请求失败时为空。
 @property (nonatomic, copy, readonly) NSDictionary<NSString *, id> *data;
 /// 服务端点击记录 ID。

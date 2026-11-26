@@ -90,6 +90,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSTimeInterval deepLinkGracePeriod;
 /// HTTP 超时(秒)。默认 10。
 @property (nonatomic, assign) NSTimeInterval timeout;
+/// 瑞雪 CPID。与 productId 都有值时请求头改为 ruixue-cpid,不再发 App-Id。接入 RXSDK 时由基础库传入。
+@property (nonatomic, copy, nullable) NSString *cpid;
+/// 瑞雪产品 ID。与 cpid 都有值时请求头改为 ruixue-productid。
+@property (nonatomic, copy, nullable) NSString *productId;
 
 @end
 
